@@ -2,7 +2,7 @@
 
 This is website will show palindrome the Palindrome dates from the past and future.
 
-[Demo](https://stevenkoerts.nl/palindrome-sniffle)
+[Demo](https://stevenkoerts.nl/palindrome-date-sniffle)
 
 ## Dependencies 
 - React
