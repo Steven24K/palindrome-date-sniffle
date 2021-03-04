@@ -6,7 +6,7 @@ const reverse_string = (text: string): string => text.split('').reduce((xs, x) =
 
 
 export const App = () => {
-    const [start_from, setStartDate] = React.useState(0)
+    const [start_from, setStartDate] = React.useState(5000)
     const [total_days, setTotalDays] = React.useState(100000)
     const [pointer, movePointer] = React.useState(0)
 
@@ -20,7 +20,7 @@ export const App = () => {
 
 
 
-    return <div>
+    return <div className="main">
 
         <div>
             <label>Start at: {start_from}</label>
@@ -29,7 +29,7 @@ export const App = () => {
 
         <div>
             <label>Days in the future: </label>
-            <input type="number" value={total_days} onChange={e => setTotalDays(Number(e.target.value))}/>
+            <input type="number" value={total_days} onChange={e => setTotalDays(Number(e.target.value))} />
         </div>
 
 
@@ -45,14 +45,20 @@ export const App = () => {
         </div>
 
 
-        <div>
-            {dates.slice(0, pointer).map(date => <h2 key={date}>{moment(date).format('DD/MM/YYYY')}</h2>)}
+        <div className="dates">
+            <div className="past" onScroll={(e) => movePointer(pointer - 1)}>
+                {dates.slice(0, pointer).map(date => <h2 key={date}>{moment(date).format('DD/MM/YYYY')}</h2>)}
+            </div>
 
-            <h1>{moment(dates[pointer]).format('DD/MM/YYYY')}</h1>
+            <div className="current">
+                <h1>{moment(dates[pointer]).format('DD/MM/YYYY')}</h1>
+            </div>
 
-            {dates.slice(pointer + 1, dates.length).map(date => <h2 key={date}>{moment(date).format('DD/MM/YYYY')}</h2>)}
+            <div className="future" onScroll={(e) => movePointer(pointer + 1)}>
+                {dates.slice(pointer + 1, dates.length).map(date => <h2 key={date}>{moment(date).format('DD/MM/YYYY')}</h2>)}
+            </div>
         </div>
 
-    </div>
+    </div >
 
 }
